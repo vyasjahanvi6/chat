@@ -1,0 +1,10 @@
+<p>Welcome, <%= @resource.name %>!</p>
+
+<% account_user = @resource&.account_users&.first %>
+<% if account_user&.inviter.present? %>
+  <p><%= account_user.inviter.name %>, with <%= account_user.account.name %>, has invited you to try out Chatwoot! </p>
+<% end %>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Confirm my account', frontend_url('auth/confirmation', confirmation_token: @token) %></p>
